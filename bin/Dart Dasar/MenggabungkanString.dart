@@ -3,9 +3,7 @@ void main() {
   var lastName = ' Kautsar Diprajya';
   var name1 = firstName + lastName;
   var name2 =
-      'Al '
-      'Kautsar '
-      'Diprjaya';
+      'Al ''Kautsar ''Diprjaya';
 
   print(name1);
   print(name2);
