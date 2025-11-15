@@ -1,14 +1,23 @@
-
-
 class Repository {
   final String _name;
 
   Repository(this._name);
 
-  noSuchMethod(Invocation invocation) {
-    var column = MirrorSystem.getName(invocation.memberName);
-    var value = invocation.positionalArguments.first;
-    var sql = "Select * From $_name where $column = '$value'";
-    print(sql);
+  @override
+  dynamic noSuchMethod(Invocation invocation) {
+    // Convert Symbol → String
+    String methodName = invocation.memberName.toString()
+        .replaceAll('Symbol("', '')
+        .replaceAll('")', '');
+
+    var value = invocation.positionalArguments.isNotEmpty
+        ? invocation.positionalArguments.first
+        : null;
+
+    print("SELECT * FROM $_name WHERE $methodName = '$value'");
   }
+
+
 }
+
+
